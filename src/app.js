@@ -1,0 +1,18 @@
+import express from "express"
+import cors from "cors"
+import cookieParser from "cookie-parser"
+
+const app = express()
+
+app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+}))
+
+app.use(express.json({limit: "16kb"})) //used when data comes in json fromat
+app.use(express.urlencoded({extended: true, limit: "16kb"})) //used whrn data comes from url. it used to tell express to understand the meanings for url.
+app.use(express.static("public")) //
+
+app.use(cookieParser()) //to use custom cookies of user system
+
+export { app }
